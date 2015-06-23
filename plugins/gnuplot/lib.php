@@ -50,14 +50,17 @@ class math_gnuplot extends local_math_plugin {
      * @return string image file pathname
      */
     public function render($script, $filename) {
+        $log = null;
         $pathname = $this->get_image_cache() . "/{$filename}.png";
         $script = "set terminal png size " . $this->get_config('imgwidth') . "," .
             $this->get_config('imgheight') . "; set output \"$pathname\"; $script";
         $pathgnuplot = escapeshellarg(get_config('local_math', 'pathgnuplot'));
         $command = "$pathgnuplot -e '$script'";
-        if (!$this->execute($command)) {
+        if (!$this->execute($command, $log)) {
             return $pathname;
         }
+        $this->debug = $log;
+        unlink($pathname);
     }
 }
 
