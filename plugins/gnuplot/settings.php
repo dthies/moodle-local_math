@@ -30,8 +30,14 @@ $defaultpathgnuplot = '/usr/bin/gnuplot';
 $plugin = local_math_plugin::get('gnuplot');
 $image = $plugin->get_image_url(get_config('math_gnuplot', 'testexp'));
 
+if (get_config('math_tex2svg', 'purgecaches')) {
+    $plugin->purge_caches();
+    set_config('purgecaches', 0, 'math_tex2svg');
+}
 
 if ($ADMIN->fulltree) {
+    $settings->add(new admin_setting_configcheckbox('math_tex2svg/purgecaches',
+        get_string('purgecaches', 'local_math'), get_string('purgecaches_desc', 'local_math'), 0));
     $settings->add(new admin_setting_configtext('math_gnuplot/delimiters',
         get_string('delimiters', 'local_math'),
         get_string('delimiters_desc', 'local_math'),

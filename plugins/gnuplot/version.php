@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version  = 2015062600;
+$plugin->version  = 2015062601;
 $plugin->requires = 2013110500;  // Requires this Moodle version.
 $plugin->component = 'math_gnuplot';
 $plugin->stability = 'math_gnuplot';
