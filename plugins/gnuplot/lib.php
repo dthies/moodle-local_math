@@ -54,12 +54,17 @@ class math_gnuplot extends local_math_plugin {
         $pathname = $this->get_image_cache() . "/{$filename}.png";
         $script = "set terminal png size " . $this->get_config('imgwidth') . "," .
             $this->get_config('imgheight') . "; set output \"$pathname\"; $script";
+
+        // Turn the gnuplot script into a .plt file in the temp area.
+        $plot = $this->get_temp() . "/$filename.plt";
+        file_put_contents($plot, $script);
+
         $pathgnuplot = escapeshellarg(get_config('local_math', 'pathgnuplot'));
-        $command = "$pathgnuplot -e '$script'";
+        $command = "$pathgnuplot < $plot";
         if (!$this->execute($command, $log)) {
             return $pathname;
         }
-        $this->debug = $log;
+        $this->debug .= $log;
         unlink($pathname);
     }
 }

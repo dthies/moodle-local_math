@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Math filter subplugin type declaration.
+ * Math renderer subplugin type declaration.
  *
- * @package filter_math
+ * @package local_math
  * @copyright 2014 Daniel Thies <dthies@ccal.edu>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

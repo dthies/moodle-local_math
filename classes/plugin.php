@@ -270,7 +270,7 @@ abstract class local_math_plugin {
         }
         $md5 = str_replace(".{$this->imgformat}", '', $image);
         $scriptcache = $this->get_record($md5);
-        $this->debug .= "Database entry: $scriptcache->rawtext ";
+        $this->debug .= "Database entry: <pre>$scriptcache->rawtext </pre><br>";
         if ($scriptcache) {
             return $this->render($scriptcache->rawtext, $md5);
         }
@@ -326,12 +326,7 @@ abstract class local_math_plugin {
         } else {
             if (debugging()) {
                 echo "Image not found!<br />Image format: $this->imgformat<br />Filter: $this->filter<br />\n";
-                echo "<br>Output: <br /><code>" . $this->debug . "</code><br />\n";
-                if ($pathname) {
-                    echo "<br>Output: <br /><code>" . $this->debug . "</code><br />\n";
-                } else {
-                    echo "Database entry empty for $image!<br />";
-                }
+                echo "<br>Output: <br /><pre><code>" . $this->debug . "</code></pre><br />\n";
             } else {
                 echo "Image not found!<br />";
             }
