@@ -27,10 +27,10 @@ defined('MOODLE_INTERNAL') || die;
 $defaultdelimiters = '[["a%", "%a"]]';
 
 $plugin = local_math_plugin::get('asciimath');
-if (empty(get_config('math_asciimath', 'testexp'))) {
+
+$image = $plugin->get_image_url(get_config('math_asciimath', 'testexp'));
+if (empty($image)) {
     $image = '';
-} else {
-    $image = $plugin->get_image_url(get_config('math_asciimath', 'testexp'));
 }
 
 
